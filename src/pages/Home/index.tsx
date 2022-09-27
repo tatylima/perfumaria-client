@@ -1,13 +1,14 @@
 import Menu from "components/Menu";
 import { ReactComponent as Search } from "assets/icons/search.svg";
 import * as S from "./style";
-
+import { RoutePath } from "types/routes";
+import { navigationItems } from "data/navigation";
 const Home = () => {
 	return (
 		<S.Home>
-			<Menu />
+			<Menu active={RoutePath.HOME} navItems={navigationItems} />
 			<S.HomeContent>
-				<header>
+app/src/navigation.tsx				<header>
 					<S.HomeHeaderDetails>
 						<div>
 							<S.HomeHeaderDetailsLogo>Perfumaria Padron</S.HomeHeaderDetailsLogo>
@@ -23,7 +24,7 @@ const Home = () => {
 				</header>
 				<div>
 					<S.HomeProductTitle>
-						<b>Perfume</b>
+						<b>Perfumes</b>
 					</S.HomeProductTitle>
 					<S.HomeProductList>
 						<p>Lista de produtos aqui</p>
