@@ -1,4 +1,5 @@
 import { ReactComponent as Add } from "assets/icons/add.svg";
+import EditProduct from "components/Crud/EditProduct";
 import { HTMLAttributes } from "react";
 import * as S from "./style";
 
@@ -11,12 +12,12 @@ const ManageProducts = ({ ...props }: ManageProductsProps) => {
     <S.ManageProducts {...props}>
       <S.ManageProductsTitle>Gerenciar Produtos</S.ManageProductsTitle>
       <S.ManageProductsSub>
-        <b>Pizzas</b>
+        <b>Perfumes</b>
       </S.ManageProductsSub>
       <S.ManageProductsContent>
         <S.ManageProductsContentAdd>
           <Add />
-          <span>Adicionar Pizza</span>
+          <span>Adicionar Perfume</span>
         </S.ManageProductsContentAdd>
         <S.AddCard>
           <S.EditForm type="text" placeholder="Título" />
@@ -24,7 +25,7 @@ const ManageProducts = ({ ...props }: ManageProductsProps) => {
           <S.EditForm type="text" placeholder="Descrição" />
           <S.EditForm type="url" placeholder="Imagem" />
         </S.AddCard>
-        {"Componente EditProduct"}
+        <EditProduct />
       </S.ManageProductsContent>
       <S.ManageProductsActions>
         <S.ManageProductsActionsCancel>Cancelar</S.ManageProductsActionsCancel>
