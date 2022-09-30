@@ -1,5 +1,7 @@
-export const orders = [
-	{
+import { OrderItemType } from "types/OrderItemType";
+
+export const orders: OrderItemType[] = [
+  {
 		product: {
 			id:          '354da843-18cb-4467-8c8f-45e0f594befd',
 			name:        'Paris',

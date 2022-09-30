@@ -1,5 +1,7 @@
-export const products = [
-	{
+import { ProductResponse } from "types/Product";
+
+export const products: ProductResponse[] = [
+  {
 		id:          '354da843-18cb-4467-8c8f-45e0f594befd',
 			name:        'Paris',
 			description: 'Perfume Feminino 30ml',
