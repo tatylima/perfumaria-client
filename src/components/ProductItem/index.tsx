@@ -9,7 +9,7 @@ const ProductItem = ({product, onSelect}: ProductItemProps) => {
     return (
 
         <S.ProductItem role='listitem' onClick={()=> onSelect(product)}>
-            <S.ProductItemImage src={product.image} alt={`Pizza de ${product.name}`}/>
+            <S.ProductItemImage src={product.image} alt={`${product.name}`}/>
             <div>
                 <S.ProductItemName>{product.name}</S.ProductItemName>
                 <S.ProductItemPrice>{product.price}</S.ProductItemPrice>
