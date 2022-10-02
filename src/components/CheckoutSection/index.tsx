@@ -5,6 +5,7 @@ import * as S from './style';
 import { ReactComponent as Card } from "assets/icons/credit-card.svg";
 import { ReactComponent as Cash } from "assets/icons/wallet.svg";
 import { OrderItemType } from "types/OrderItemType";
+import { PaymentMethod } from "types/PaymentMethod";
 
 type CheckoutSectionType = HTMLAttributes<HTMLDivElement>;
 
@@ -19,6 +20,7 @@ const CheckoutSection = ({
   onOrdersChange,
   onCloseSection,
 }: CheckoutSectionProps) => {
+  const [activeMethod, setActiveMethod] = useState<PaymentMethod>();
   const [closing, setClosing] = useState<boolean>(false);
 
   const handleCloseSection = () => {
@@ -43,11 +45,22 @@ const CheckoutSection = ({
             Método de Pagamento
           </S.CheckoutSectionPaymentFormTitle>
           <S.PaymentForm>
-            <S.PaymentFormCheckbox>
-            <CheckboxIcon active={false} value="Cartão" icon={<Card />} />
-              <CheckboxIcon active={false} value="Cash" icon={<Cash/>} />
-            </S.PaymentFormCheckbox>
-            <>
+          <S.PaymentFormCheckbox>
+              <CheckboxIcon
+                onClick={() => setActiveMethod(PaymentMethod.CARD)}
+                active={activeMethod === PaymentMethod.CARD}
+                value="Cartão"
+                icon={<Card />}
+              />
+            <CheckboxIcon
+                onClick={() => setActiveMethod(PaymentMethod.CASH)}
+                active={activeMethod === PaymentMethod.CASH}
+                value="Dinheiro"
+                icon={<Cash />}
+              />
+           </S.PaymentFormCheckbox>
+            {activeMethod === PaymentMethod.CARD && (
+              <>
               <S.PaymentFormGroup>
                 <label htmlFor="titular">Titular do cartão</label>
                 <input
@@ -84,6 +97,7 @@ const CheckoutSection = ({
                 </S.PaymentFormHalfItem>
               </S.PaymentFormHalf>
             </>
+             )}
           </S.PaymentForm>
         </S.CheckoutSectionPaymentForm>
         <S.PaymentActions>

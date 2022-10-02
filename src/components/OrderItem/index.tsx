@@ -7,6 +7,7 @@ import * as S from "./style";
 type DivType = ButtonHTMLAttributes<HTMLDivElement>;
 
 export type OrderItemProps = {
+  canDelete?: Boolean;
   product: ProductResponse;
   quantity: number;
   observation?: string;
