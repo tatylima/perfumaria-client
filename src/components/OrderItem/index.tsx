@@ -1,5 +1,6 @@
 import { ReactComponent as Trash } from "assets/icons/trash.svg";
 import { ButtonHTMLAttributes, useEffect, useState } from "react";
+import { OrderItemType } from "types/OrderItemType";
 import { ProductResponse } from "types/Product";
 import * as S from "./style";
 
@@ -10,6 +11,7 @@ export type OrderItemProps = {
   quantity: number;
   observation?: string;
   onRemoveItem?: () => void;
+  onItemChange: (item: OrderItemType) => void;
 } & DivType;
 
 const OrderItem = ({
@@ -17,6 +19,8 @@ const OrderItem = ({
   quantity,
   observation = "",
   onRemoveItem,
+  onItemChange,
+  canDelete = true,
   ...props
 }: OrderItemProps) => {
   const [quantityState, setQuantityState] = useState(quantity);
@@ -30,6 +34,14 @@ const OrderItem = ({
     setQuantityState(data);
   };
 
+  const handleChange = (quantityParam: number, observationParam: string) => {
+    onItemChange({
+      product: product,
+      quantity: quantityParam,
+      observation: observationParam,
+    });
+  };
+
   useEffect(() => {
     handleObservation(observation);
   }, [observation]);
@@ -37,6 +49,7 @@ const OrderItem = ({
   useEffect(() => {
     handleQuantity(quantity);
   }, [quantity]);
+
   return (
     <S.OrderItem {...props} role="listitem">
       <S.OrderItemLeft>

@@ -23,6 +23,8 @@ const Home = () => {
   const navigate = useNavigate();
 
   const [orders, setOrders] = useState<OrderItemType[]>([]);
+  const [proceedToPayment, setProceedToPayment] = useState<boolean>(false);
+
 
   const handleNavigation = (path: RoutePath) => navigate(path);
   
@@ -32,7 +34,8 @@ const Home = () => {
     const item: OrderItemType = { product, quantity };
   
   
-  const list = existing? orders.map((i) => (i.product.id === existing.product.id ? item : i)): [...orders, item];
+  const list = existing? orders.map((i) => (i.product.id === existing.product.id ? item : i))
+  : [...orders, item];
     setOrders(list);
   };
 
@@ -87,12 +90,20 @@ const Home = () => {
       <aside>
         <OrderDetails
           orders={orders}
+          onProceedToPayment={() => setProceedToPayment(true)}
+          onOrdersChange={(data) => setOrders(data)}
           onRemoveItem={handleRemoveOrderItem}
         />
-      </aside>
-      {/* <Overlay>
-                <CheckoutSection />
-            </Overlay> */}
+     </aside>
+      {proceedToPayment && (
+        <Overlay>
+          <CheckoutSection
+            orders={orders}
+            onOrdersChange={(data) => setOrders(data)}
+            onCloseSection={() => setProceedToPayment(false)}
+          />
+        </Overlay>
+      )}
     </S.Home>
   );
 };
