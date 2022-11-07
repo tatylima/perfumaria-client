@@ -4,7 +4,7 @@ import { product } from './product';
 import { user } from './user';
 
 export const endpoint = {
-    baseUrl: "https://pizza-fresh-server.herokuapp.com",
+    baseUrl: "https://perfumaria-server-production-fbb6.up.railway.app/",
     ...auth,
     ...user,
     ...order,
