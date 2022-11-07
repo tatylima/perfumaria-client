@@ -74,6 +74,7 @@ const OrderItem = ({
             value={quantityState}
             onChange={({ target }) => {
               setQuantityState(Number(target.value));
+              handleChange(Number(target.value), observationState);
             }}
           />
         </S.OrderItemLeftTop>
@@ -83,6 +84,7 @@ const OrderItem = ({
           value={observationState}
           onChange={({ target }) => {
             setObservationState(target.value);
+            handleChange(quantityState, target.value);
           }}
         />
       </S.OrderItemLeft>
@@ -90,9 +92,11 @@ const OrderItem = ({
         <S.OrderItemRightTotalPrice>
           R$ {Number(product.price * quantityState).toFixed(2)}
         </S.OrderItemRightTotalPrice>
+        {canDelete && (
         <S.OrderItemRightTrash onClick={onRemoveItem}>
           <Trash />
         </S.OrderItemRightTrash>
+        )}
       </S.OrderItemRight>
     </S.OrderItem>
   );
