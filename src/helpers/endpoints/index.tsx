@@ -4,7 +4,7 @@ import { product } from './product';
 import { user } from './user';
 
 export const endpoint = {
-    baseUrl: "https://perfumaria-server-production-fbb6.up.railway.app/api",
+    baseUrl: "http://localhost:3333/api",
     ...auth,
     ...user,
     ...order,
